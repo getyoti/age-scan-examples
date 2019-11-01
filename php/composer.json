@@ -1,0 +1,12 @@
+{
+    "name": "martyrja/docscan-php",
+    "authors": [
+        {
+            "name": "jlmartyres",
+            "email": "jlmartyres@live.co.uk"
+        }
+    ],
+    "require": {
+        "yoti/yoti-php-sdk": "^2.4"
+    }
+}
