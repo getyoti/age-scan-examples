@@ -1,6 +1,5 @@
 # javascript Example
 
-- Clone this project
 - Run `npm install`
 - Save your PEM file into the keys directory and name it key.pem
 - Edit the `.env` file, adding client SDK ID and BASE_URL
