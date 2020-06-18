@@ -21,3 +21,5 @@ $request = (new RequestBuilder())
 $response = $request->execute();
 
 $body = $response->getBody();
+
+echo $body;
