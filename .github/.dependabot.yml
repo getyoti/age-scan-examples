@@ -1,0 +1,73 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/dotnet"
+  schedule:
+    interval: monthly
+  open-pull-requests-limit: 3
+  target-branch: master
+  reviewers:
+    - echarrod
+    - LAFYoti
+    - jlmartyres
+    - nikhilPank
+
+- package-ecosystem: composer
+  directory: "/php"
+  schedule:
+    interval: monthly
+  open-pull-requests-limit: 3
+  target-branch: master
+  reviewers:
+    - echarrod
+    - LAFYoti
+    - jlmartyres
+    - nikhilPank
+  
+- package-ecosystem: gomod
+  directory: "/go"
+  schedule:
+    interval: monthly
+  open-pull-requests-limit: 3
+  target-branch: master
+  reviewers:
+    - echarrod
+    - LAFYoti
+    - jlmartyres
+    - nikhilPank
+
+- package-ecosystem: maven
+  directory: "/java"
+  schedule:
+    interval: monthly
+  open-pull-requests-limit: 3
+  target-branch: master
+  reviewers:
+    - echarrod
+    - LAFYoti
+    - jlmartyres
+    - nikhilPank
+
+- package-ecosystem: npm
+  directory: "/javascript"
+  schedule:
+    interval: monthly
+  open-pull-requests-limit: 3
+  target-branch: master
+  reviewers:
+    - echarrod
+    - LAFYoti
+    - jlmartyres
+    - nikhilPank
+
+- package-ecosystem: pip
+  directory: "/python"
+  schedule:
+    interval: monthly
+  open-pull-requests-limit: 3
+  target-branch: master
+  reviewers:
+    - echarrod
+    - LAFYoti
+    - jlmartyres
+    - nikhilPank
