@@ -33,16 +33,21 @@ func main(){
 	}
 	defer file.Close()
 	reader := bufio.NewReader(file)
-	content, _ := ioutil.ReadAll(reader)
+	content, err := ioutil.ReadAll(reader)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 	encoded := base64.StdEncoding.EncodeToString(content)
 
 	estimation := &Estimation{
 		Data:encoded,
 	}
 
-	jsonData,err := json.Marshal(estimation)
+	jsonData, err := json.Marshal(estimation)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	key, err := ioutil.ReadFile(keyFile)

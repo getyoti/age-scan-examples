@@ -13,6 +13,10 @@ def execute(request):
     return response.content
 
 def generate_session():
+    endpoint = os.getenv('ENDPOINT')
+    if not endpoint:
+        raise ValueError("ENDPOINT environment variable is required")
+    
     with open(os.getenv('TEST_IMAGE_PATH'), "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
     data = {"data" : encoded_string.decode("utf-8")}
@@ -24,7 +28,7 @@ def generate_session():
         .builder()
         .with_pem_file(os.getenv('PEM_FILE_PATH'))
         .with_base_url(os.getenv('BASE_URL'))
-        .with_endpoint("/" + os.getenv('ENDPOINT'))
+        .with_endpoint("/" + endpoint)
         .with_http_method("POST")
         .with_header("X-Yoti-Auth-Id", os.getenv('SDK_ID'))
         .with_payload(payload_string)

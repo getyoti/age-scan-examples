@@ -17,6 +17,9 @@ if (!$sdkId) {
 }
 
 $image = file_get_contents($imagePath);
+if ($image === false) {
+    die("Error: Could not read image file: $imagePath\n");
+}
 
 $payload = [ "data" => base64_encode($image) ];
 
