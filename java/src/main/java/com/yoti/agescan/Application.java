@@ -54,8 +54,8 @@ public class Application {
         try {
             SignedRequest signedRequest = SignedRequestBuilder.newInstance()
                     .withKeyPair(findKeyPair())
-                    .withBaseUrl(prop.getProperty("HOST") + "/api/v1/age-verification")
-                    .withEndpoint("/checks")
+                    .withBaseUrl(prop.getProperty("BASE_URL"))
+                    .withEndpoint("/" + prop.getProperty("ENDPOINT"))
                     .withPayload(payload)
                     .withHttpMethod("POST")
                     .withHeader("X-Yoti-Auth-Id", prop.getProperty("SDK_ID"))

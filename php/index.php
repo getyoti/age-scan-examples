@@ -10,9 +10,9 @@ $image = file_get_contents('./image.jpeg');
 $payload = [ "data" => base64_encode($image) ];
 
 $request = (new RequestBuilder())
-    ->withBaseUrl('<YOTI_BASE_URL>/api/v1/age-verification')
+    ->withBaseUrl('https://api.yoti.com/ai/v1')
     ->withPemFilePath('key.pem')
-    ->withEndpoint('/checks')
+    ->withEndpoint('/age-antispoofing')
     ->withMethod('POST')
     ->withPayload(Payload::fromJsonData($payload))
     ->withHeader('X-Yoti-Auth-Id', '<SDK_ID>')

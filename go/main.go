@@ -22,6 +22,7 @@ func main(){
 
 	sdkID := os.Getenv("SDK_ID")
 	baseURL := os.Getenv("BASE_URL")
+	endpoint := os.Getenv("ENDPOINT")
 	keyFile := os.Getenv("PEM_FILE_PATH")
 	imgPath := os.Getenv("TEST_IMAGE_PATH")
 
@@ -43,8 +44,8 @@ func main(){
 	// Create request
 	req,_ := requests.SignedRequest{
 		HTTPMethod: http.MethodPost,
-		BaseURL:    baseURL + "/api/v1/age-verification",
-		Endpoint:   "/checks",
+		BaseURL:    baseURL,
+		Endpoint:   "/" + endpoint,
 		Headers: map[string][]string{
 			"Content-Type": {"application/json"},
 			"Accept":       {"application/json"},

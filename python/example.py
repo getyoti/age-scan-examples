@@ -23,8 +23,8 @@ def generate_session():
         SignedRequest
         .builder()
         .with_pem_file(os.getenv('PEM_FILE_PATH'))
-        .with_base_url(os.getenv('HOST') + "/api/v1/age-verification")
-        .with_endpoint("/checks")
+        .with_base_url(os.getenv('BASE_URL'))
+        .with_endpoint("/" + os.getenv('ENDPOINT'))
         .with_http_method("POST")
         .with_header("X-Yoti-Auth-Id", os.getenv('SDK_ID'))
         .with_payload(payload_string)
