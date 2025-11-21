@@ -5,12 +5,16 @@ require_once './vendor/autoload.php';
 use Yoti\Http\RequestBuilder;
 use Yoti\Http\Payload;
 
-// Configuration - update these values
+// Configuration - update these values or set environment variables
 $baseUrl = getenv('BASE_URL') ?: 'https://api.yoti.com/ai/v1';
 $endpoint = getenv('ENDPOINT') ?: 'age-antispoofing';
 $pemFilePath = getenv('PEM_FILE_PATH') ?: 'key.pem';
-$sdkId = getenv('SDK_ID') ?: '<SDK_ID>';
+$sdkId = getenv('SDK_ID');
 $imagePath = getenv('IMAGE_PATH') ?: './image.jpeg';
+
+if (!$sdkId) {
+    die("Error: SDK_ID environment variable is required. Please set SDK_ID or update the code directly.\n");
+}
 
 $image = file_get_contents($imagePath);
 

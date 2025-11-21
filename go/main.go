@@ -26,7 +26,12 @@ func main(){
 	keyFile := os.Getenv("PEM_FILE_PATH")
 	imgPath := os.Getenv("TEST_IMAGE_PATH")
 
-	file, _ := os.Open(imgPath)
+	file, err := os.Open(imgPath)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer file.Close()
 	reader := bufio.NewReader(file)
 	content, _ := ioutil.ReadAll(reader)
 	encoded := base64.StdEncoding.EncodeToString(content)
@@ -40,9 +45,13 @@ func main(){
 		fmt.Println(err)
 	}
 
-	key, _ := ioutil.ReadFile(keyFile)
+	key, err := ioutil.ReadFile(keyFile)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 	// Create request
-	req,_ := requests.SignedRequest{
+	req, err := requests.SignedRequest{
 		HTTPMethod: http.MethodPost,
 		BaseURL:    baseURL,
 		Endpoint:   "/" + endpoint,
@@ -53,9 +62,17 @@ func main(){
 		},
 		Body: jsonData,
 	}.WithPemFile(key).Request()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
 	//get Yoti response
-	response, _ := http.DefaultClient.Do(req)
+	response, err := http.DefaultClient.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
 	buffer := new(strings.Builder)
 	_, err = io.Copy(buffer, response.Body)

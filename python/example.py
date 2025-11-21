@@ -32,7 +32,7 @@ def generate_session():
 
     )
 
-	# get Yoti response
+    # get Yoti response
     response = signed_request.execute()
     response_payload = json.loads(response.text)
     print(response_payload)
