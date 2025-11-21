@@ -41,7 +41,7 @@ func main(){
 	encoded := base64.StdEncoding.EncodeToString(content)
 
 	estimation := &Estimation{
-		Data:encoded,
+		Data: encoded,
 	}
 
 	jsonData, err := json.Marshal(estimation)

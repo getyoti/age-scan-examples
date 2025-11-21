@@ -13,9 +13,7 @@ def execute(request):
     return response.content
 
 def generate_session():
-    endpoint = os.getenv('ENDPOINT')
-    if not endpoint:
-        raise ValueError("ENDPOINT environment variable is required")
+    endpoint = os.getenv('ENDPOINT', 'age-antispoofing')
     
     with open(os.getenv('TEST_IMAGE_PATH'), "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
