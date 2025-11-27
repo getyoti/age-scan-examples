@@ -4,7 +4,7 @@ const { RequestBuilder, Payload } = require('yoti');
 const fs = require('fs')
 
 var image = fs.readFileSync(process.env.TEST_IMAGE_PATH);
-var imageRequest = {"data": image.toString('base64')}
+var imageRequest = {"img": image.toString('base64')}
 
 const request = new RequestBuilder()
     .withBaseUrl(process.env.BASE_URL)
