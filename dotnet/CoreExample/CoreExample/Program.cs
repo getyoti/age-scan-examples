@@ -46,7 +46,7 @@ namespace CoreExample
            
             string serializedRequest = Newtonsoft.Json.JsonConvert.SerializeObject(new
             {
-                data =  Convert.ToBase64String(imgBytes)
+                img =  Convert.ToBase64String(imgBytes)
             });
 
             byte[] byteContent = Encoding.UTF8.GetBytes(serializedRequest);
