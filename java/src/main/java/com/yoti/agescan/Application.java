@@ -35,18 +35,22 @@ public class Application {
         BufferedImage bufferedImage = null;
         ByteArrayOutputStream byteArrayOutputStream = null;
         try {
-            bufferedImage = ImageIO.read(new File(Application.class.getClassLoader().
-                    getResource(prop.getProperty("TEST_IMAGE_PATH")).
-                    getFile()));
+             InputStream imageStream = Application.class.getClassLoader()
+                .getResourceAsStream(prop.getProperty("TEST_IMAGE_PATH"));
+            if (imageStream == null) {
+                System.out.println("Image not found in resources!");
+                return;
+            }
+            bufferedImage = ImageIO.read(imageStream);
             byteArrayOutputStream = new ByteArrayOutputStream();
-            ImageIO.write(bufferedImage, "jpg", byteArrayOutputStream );
+            ImageIO.write(bufferedImage, "jpg", byteArrayOutputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         byte[] image = byteArrayOutputStream.toByteArray();
         JsonObject body = new JsonObject();
-        body.put("data", image);
+        body.put("img", image);
 
 
         byte[] payload = body.encode().getBytes();
@@ -74,8 +78,11 @@ public class Application {
      * @throws IOException
      */
     private static KeyPair findKeyPair() throws IOException {
-        InputStream keyStream = new FileInputStream(Application.class.getClassLoader().getResource(prop.getProperty("PEM_FILE_PATH")).getFile());
-        PEMParser reader = new PEMParser(new BufferedReader(new InputStreamReader(keyStream, Charset.defaultCharset())));
+    InputStream keyStream = Application.class.getClassLoader()
+        .getResourceAsStream(prop.getProperty("PEM_FILE_PATH"));
+    if (keyStream == null) {
+        throw new FileNotFoundException("PEM key file not found in resources!");
+    }        PEMParser reader = new PEMParser(new BufferedReader(new InputStreamReader(keyStream, Charset.defaultCharset())));
         KeyPair keyPair = null;
         for (Object o = null; (o = reader.readObject()) != null;) {
             if (o instanceof PEMKeyPair) {
