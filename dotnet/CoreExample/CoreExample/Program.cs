@@ -46,14 +46,14 @@ namespace CoreExample
            
             string serializedRequest = Newtonsoft.Json.JsonConvert.SerializeObject(new
             {
-                data =  Convert.ToBase64String(imgBytes)
+                img =  Convert.ToBase64String(imgBytes)
             });
 
             byte[] byteContent = Encoding.UTF8.GetBytes(serializedRequest);
 
             Request request = new RequestBuilder()
-                .WithBaseUri(new Uri(DotNetEnv.Env.GetString("BASE_URL") + "/api/v1/age-verification"))
-                .WithEndpoint("/checks")
+                .WithBaseUri(new Uri(DotNetEnv.Env.GetString("BASE_URL")))
+                .WithEndpoint("/" + DotNetEnv.Env.GetString("ENDPOINT"))
                 .WithHttpMethod(HttpMethod.Post)
                 .WithKeyPair(key)
                 .WithHeader("X-Yoti-Auth-Id", DotNetEnv.Env.GetString("SDK_ID"))

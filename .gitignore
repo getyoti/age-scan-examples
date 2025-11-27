@@ -1,0 +1,30 @@
+# Build artifacts and dependencies
+node_modules/
+vendor/
+target/
+dist/
+build/
+bin/
+obj/
+
+# Go module cache
+/root/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment and keys
+.env
+*.pem
+!.env.example
+
+# Logs
+*.log

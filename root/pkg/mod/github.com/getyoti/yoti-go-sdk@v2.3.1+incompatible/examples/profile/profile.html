@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Yoti Profile</title>
+  </head>
+  <body>
+    <h1><a href="/">Home</a></h1>
+    <table>
+      <tr>
+        <td>Remember Me ID:</td>
+        <td>{{.rememberMeID}}</td>
+      </tr>
+      {{if .selfieBase64URL}}
+      <tr>
+        <td>Selfie as base64 URI:</td>
+        <td><img src="{{.selfieBase64URL}}" /></td>
+      </tr>
+      <tr>
+        <td>Selfie from saved Image</td>
+        <td><img src="/images/YotiSelfie.jpeg" /></td>
+      </tr>
+      {{end}}
+      {{if .profile.GivenNames}}
+      <tr>
+        <td>First Name:</td>
+        <td>{{.profile.GivenNames.Value}}</td>
+      </tr>
+      {{end}}
+      {{if .profile.FamilyName.Value}}
+      <tr>
+        <td>Family Name:</td>
+        <td>{{.profile.FamilyName.Value}}</td>
+      </tr>
+      {{end}}
+      {{if .profile.FullName}}
+      <tr>
+        <td>Full Name:</td>
+        <td>{{.profile.FullName.Value}}</td>
+      </tr>
+      {{end}}
+      {{if .profile.MobileNumber}}
+      <tr>
+        <td>Mobile Number:</td>
+        <td>{{.profile.MobileNumber.Value}}</td>
+      </tr>
+      {{end}}
+      {{if .profile.EmailAddress}}
+      <tr>
+        <td>Email Address:</td>
+        <td>{{.profile.EmailAddress.Value}}</td>
+      </tr>
+      {{end}}
+      {{if .dateOfBirth}}
+      <tr>
+        <td>Date of Birth:</td>
+        <td>{{.dateOfBirth}}</td>
+      </tr>
+      {{end}}     
+      {{if .profile.Address}}
+      <tr>
+        <td>Address:</td>
+        <td>{{.profile.Address.Value}}</td>
+      </tr>
+      {{end}}
+      {{if .profile.Gender}}
+      <tr>
+        <td>Gender:</td>
+        <td>{{.profile.Gender.Value}}</td>
+      </tr>
+      {{end}}
+      {{if .profile.Nationality}}
+      <tr>
+        <td>Nationality:</td>
+        <td>{{.profile.Nationality.Value}}</td>
+      </tr>
+      {{end}}
+      {{if .profile.StructuredPostalAddress}}
+      <tr>
+        <td>Structured Postal Address:</td>
+        <td>
+          <table> 
+          {{range $key, $value := .profile.StructuredPostalAddress.Value}} 
+            <tr>  
+              <td>{{$key}}</td>
+              <td>{{$value}}</td>
+            </tr>  
+          {{end}}
+          </table>   
+        </td>     
+      </tr>
+      {{end}}
+    </table>
+  </body>
+</html>

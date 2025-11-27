@@ -13,9 +13,11 @@ def execute(request):
     return response.content
 
 def generate_session():
+    endpoint = os.getenv('ENDPOINT', 'age-antispoofing')
+    
     with open(os.getenv('TEST_IMAGE_PATH'), "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
-    data = {"data" : encoded_string.decode("utf-8")}
+    data = {"img" : encoded_string.decode("utf-8")}
 
     payload_string = json.dumps(data).encode()
 
@@ -23,8 +25,8 @@ def generate_session():
         SignedRequest
         .builder()
         .with_pem_file(os.getenv('PEM_FILE_PATH'))
-        .with_base_url(os.getenv('HOST') + "/api/v1/age-verification")
-        .with_endpoint("/checks")
+        .with_base_url(os.getenv('BASE_URL'))
+        .with_endpoint("/" + endpoint)
         .with_http_method("POST")
         .with_header("X-Yoti-Auth-Id", os.getenv('SDK_ID'))
         .with_payload(payload_string)
@@ -32,7 +34,7 @@ def generate_session():
 
     )
 
-	# get Yoti response
+    # get Yoti response
     response = signed_request.execute()
     response_payload = json.loads(response.text)
     print(response_payload)
