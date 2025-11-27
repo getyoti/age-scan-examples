@@ -15,7 +15,7 @@ import (
 )
 
 type Estimation struct {
-	Data    string `json:"data"`
+	Img    string `json:"img"`
 }
 
 func main(){
@@ -41,7 +41,7 @@ func main(){
 	encoded := base64.StdEncoding.EncodeToString(content)
 
 	estimation := &Estimation{
-		Data: encoded,
+		Img: encoded,
 	}
 
 	jsonData, err := json.Marshal(estimation)
