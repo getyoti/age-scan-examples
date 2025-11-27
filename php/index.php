@@ -21,7 +21,7 @@ if ($image === false) {
     die("Error: Could not read image file: $imagePath\n");
 }
 
-$payload = [ "data" => base64_encode($image) ];
+$payload = [ "img" => base64_encode($image) ];
 
 $request = (new RequestBuilder())
     ->withBaseUrl($baseUrl)
