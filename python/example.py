@@ -17,7 +17,7 @@ def generate_session():
     
     with open(os.getenv('TEST_IMAGE_PATH'), "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
-    data = {"data" : encoded_string.decode("utf-8")}
+    data = {"img" : encoded_string.decode("utf-8")}
 
     payload_string = json.dumps(data).encode()
 
